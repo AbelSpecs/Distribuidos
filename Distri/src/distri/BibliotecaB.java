@@ -32,11 +32,13 @@ public class BibliotecaB extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         txtBuscador = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listLibros = new javax.swing.JList<>();
+        listLibros = new javax.swing.JList<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         textLibro = new javax.swing.JTextArea();
         btnBuscarAutor = new javax.swing.JButton();
         btnBuscarTitulo = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
 
@@ -49,14 +51,14 @@ public class BibliotecaB extends javax.swing.JFrame {
         jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 140, 70));
         jPanel1.add(txtBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 280, 30));
 
-        listLibros.setModel(new javax.swing.AbstractListModel<String>() {
+        listLibros.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(listLibros);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, 330));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 180, 290));
 
         textLibro.setColumns(20);
         textLibro.setRows(5);
@@ -71,6 +73,12 @@ public class BibliotecaB extends javax.swing.JFrame {
         btnBuscarTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
         btnBuscarTitulo.setText("Buscar Titulo");
         jPanel1.add(btnBuscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 180, 40));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "A", "B" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 100, -1));
+
+        jLabel1.setText("Buscar en biblioteca: ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 140, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,6 +133,8 @@ public class BibliotecaB extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarAutor;
     private javax.swing.JButton btnBuscarTitulo;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

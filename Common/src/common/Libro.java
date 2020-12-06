@@ -17,11 +17,11 @@ public class Libro implements Serializable{
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
     
 }
