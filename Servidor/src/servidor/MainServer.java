@@ -1,29 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servidor;
 
-import java.rmi.Naming;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import common.Libro;
+import common.Utils;
+import common.IServidorA;
 
-/**
- *
- * @author Omar David
- */
 public class MainServer {
     
-    public static void main(String[] args){
-        try {	
+    public static String url = "rmi://127.0.0.1";
+    public static int port = 8000;
 
-            LocateRegistry.createRegistry(1234);
-            Naming.rebind("rmi://127.0.0.1:1234/objetoHola", new Servidor());
+    public static void main(String[] args) throws RemoteException, Exception {
+        Utils.setCodeBase(IServidorA.class);
+        String path = "Pedir";
+        
+        ServidorA server = new ServidorA();
+        
+        server.catalog.add(new Libro("mil años de soledad","Marquez"));
+        server.catalog.add(new Libro("lord of the rings","king")); 
+        
+        IServidorA remote = (IServidorA)UnicastRemoteObject.exportObject(server, 9000);
+        //Registry registry = LocateRegistry.getRegistry();
+        Registry registry = LocateRegistry.createRegistry(port);
+        registry.rebind(path, remote);
+        
+        System.out.println("Servidor listo presione enter para terminar");
+        System.in.read();
 
-            System.out.println("Servidor iniciado");
-
-        } catch (Exception e) {	
-            System.out.println(e.getMessage()); 
-         }
+        registry.unbind("BibliotecaA");
+        UnicastRemoteObject.unexportObject(server, true);
     }
 }

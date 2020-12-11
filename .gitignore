@@ -22,3 +22,10 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /Distri/nbproject/private/
+/Common/nbproject/private/
+/Servidor/nbproject/private/
+/Cliente/nbproject/private/
+/Servidor/build/
+/Common/build/
+/Common/dist/
+/Cliente/build/
