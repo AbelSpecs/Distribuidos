@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bibliotecaA>
+    <libros>
+        <libro>
+            <id>1</id>
+            <title>Libro 1</title>
+            <author>Author 1</author>
+            <descripcion>descripcion libro 1</descripcion>
+        </libro>
+        <libro>
+            <id>2</id>
+            <title>Libro 2</title>
+            <author>Author 2</author>
+            <descripcion>descripcion libro 2</descripcion>
+        </libro>
+        <libro>
+            <id>3</id>
+            <title>Libro 3</title>
+            <author>Author 3</author>
+            <descripcion>descripcion libro 3</descripcion>
+        </libro>
+        <libro>
+            <id>4</id>
+            <title>Libro 4</title>
+            <author>Author 4</author>
+            <descripcion>descripcion libro 4</descripcion>
+        </libro>
+        <libro>
+            <id>5</id>
+            <title>Libro 5</title>
+            <author>Author 5</author>
+            <descripcion>descripcion libro 5</descripcion>
+        </libro>
+    </libros>
+</bibliotecaA>
+    
+       
