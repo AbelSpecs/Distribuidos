@@ -36,3 +36,5 @@ hs_err_pid*
 /BibliotecaA/Servidor/build/
 /BibliotecaA/Servidor/nbproject/private/
 /BibliotecaA/Common/build/
+/BibliotecaA/Cliente/dist/
+/BibliotecaA/Servidor/dist/
