@@ -10,6 +10,9 @@ public class Libro implements Serializable{
     
     private String title, author;
     private static final long serialVersionUID = 1;
+
+    public Libro(){
+    }
     
     public Libro(String title, String author){
         this.title = title;
@@ -24,4 +27,11 @@ public class Libro implements Serializable{
         return this.author;
     }
     
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 }

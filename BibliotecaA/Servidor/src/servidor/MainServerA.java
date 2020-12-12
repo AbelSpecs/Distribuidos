@@ -1,5 +1,6 @@
 package servidor;
 
+import common.IMiddlewareZ39;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -11,31 +12,31 @@ import common.IServidorA;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainServer {
+public class MainServerA {
     
     public static int port = 8000;
-    String path = "Pedir";
+    public static String path = "Pedir";
 
     public static void main(String[] args) throws RemoteException, Exception {
         Utils.setCodeBase(IServidorA.class);
-        String path = "Pedir";
-        
         ServidorA server = new ServidorA();
-        
-        List<Libro> books = new ArrayList<>();
-        books.add(new Libro("mil años de soledad","Marquez"));
-        books.add(new Libro("lord of the rings","Tolkien"));
-        server.Populate(books);
+        MiddlewareA translator = new MiddlewareA(server);        
+       
         
         IServidorA remote = (IServidorA)UnicastRemoteObject.exportObject(server, 9000);
-        //Registry registry = LocateRegistry.getRegistry();
         Registry registry = LocateRegistry.createRegistry(port);
         registry.rebind(path, remote);
         
-        System.out.println("Servidor listo presione enter para terminar");
+        IMiddlewareZ39 remote2 = (IMiddlewareZ39)UnicastRemoteObject.exportObject(translator, 9001);
+        Registry registryZ39 = LocateRegistry.createRegistry(translator.getPort());
+        registryZ39.rebind(translator.getPath(), remote2);
+        
+        System.out.println("Servidor encendido... presione enter para apagarlo");
         System.in.read();
-
-        registry.unbind("Pedir");
+        
+        registry.unbind(path);
         UnicastRemoteObject.unexportObject(server, true);
+        registryZ39.unbind(translator.getPath());
+        UnicastRemoteObject.unexportObject(translator, true);
     }
 }

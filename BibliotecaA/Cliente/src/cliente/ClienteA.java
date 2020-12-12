@@ -1,5 +1,6 @@
 package cliente;
 
+import common.IMiddlewareZ39;
 import java.net.MalformedURLException;
 import java.rmi.Remote;
 import java.rmi.Naming;
@@ -16,59 +17,52 @@ import java.util.Scanner;
 import common.IServidorA;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static jdk.nashorn.tools.ShellFunctions.input;
 
 
 public class ClienteA {
     
     private static IServidorA servidor;
+    private static IMiddlewareZ39 middleware;    
     private static List<Libro> catalogo;
     
     public static String ip = "127.0.0.1";
+    
     public static int port = 8000;
     public static String path = "Pedir";
+    
+    public static int portZ39 = 8001;
+    public static String pathZ39 = "Get";
 
     public static void main(String[] args) throws NotBoundException, MalformedURLException, RemoteException, Exception {
-        menu();
-        //Registry registry = LocateRegistry.getRegistry(); 
-        //Registry registry = LocateRegistry.createRegistry(5678);
-        //servidor = (IServidor)registry.lookup("Servant");
-        System.out.println(catalogo.get(0).getTitle() +" | "+ catalogo.get(0).getAuthor());
-        System.out.println(catalogo.get(1).getTitle() +" | "+ catalogo.get(1).getAuthor());
-        System.in.read();
+        menu();  
     }
     
     public static void menu() throws NotBoundException, MalformedURLException, RemoteException, IOException{
         Scanner scanner = new Scanner(System.in);
         int option = 10;
         while(option != 0){
-            System.out.println("Bienvenido! que bilbioteca desea interactuar?");
-            System.out.println("1)Biblioteca A");
-            System.out.println("2)Biblioteca B");
-            System.out.println("3)Biblioteca C");
+            System.out.println("Bienvenido! con que bilbioteca desea interactuar?");
+            System.out.println("1)Biblioteca Local");
+            System.out.println("2)Biblioteca Externa");
             System.out.println("0)Salir");
-            option = scanner.nextInt();
+            option = Integer.parseInt(scanner.nextLine());
             switch(option){
                 case 1:
                     ipServer();
                     servidor = (IServidorA) Naming.lookup("rmi://" + ip + ":" + port + "/" + path);
-                    biblioA();
-                    option = 0;
+                    biblioLocal();
                     break;
                 case 2:
                     ipServer();
-                    biblioB();
-                    option = 0;                    
-                    break;   
-                case 3:
-                    ipServer();                   
-                    biblioC();
-                    option = 0;                    
-                    break;                   
+                    middleware = (IMiddlewareZ39) Naming.lookup("rmi://" + ip + ":" + portZ39 + "/" + pathZ39);                    
+                    biblioRemota();                 
+                    break;                  
             }  
         }
     }
     
-    public static void biblioA() throws RemoteException{
+    public static void biblioLocal() throws RemoteException, IOException{
         Scanner scanner = new Scanner(System.in);
         String in = "";
         int option = 10;
@@ -78,42 +72,60 @@ public class ClienteA {
             System.out.println("2)Pedir Libros por titulo");
             System.out.println("3)Traer Catalogo");
             System.out.println("0)Salir");
-            option = scanner.nextInt();
+            option = Integer.parseInt(scanner.nextLine());
             switch(option){
                 case 1:
                     System.out.println("Ingrese el autor");
                     in = scanner.nextLine();
-                    servidor.PedirAutor(in);
-                    option = 0;                    
+                    catalogo = servidor.pedirAutor(in);
                     break;
                 case 2:
                     System.out.println("Ingrese el Titulo");   
                     in = scanner.nextLine();
-                    servidor.PedirLibro(in);
-                    option = 0;                    
+                    catalogo = servidor.pedirLibro(in);                  
                     break;      
                 case 3:   
-                    catalogo = servidor.getLibros();
-                    option = 0;                    
+                    catalogo = servidor.getLibros();                    
                     break;     
-            }  
+            }
         }        
     }
     
-    public static void biblioB(){
-        
-    }   
-    
-    public static void biblioC(){
-        
-    }
+    public static void biblioRemota() throws RemoteException{
+        Scanner scanner = new Scanner(System.in);
+        String in = "";
+        int option = 10;
+        while(option != 0){
+            System.out.println("Que desea hacer?");
+            System.out.println("1)Solicitar Libros por autor");
+            System.out.println("2)Solicitar Libros por titulo");
+            System.out.println("3)Traer Catalogo");
+            System.out.println("0)Salir");
+            option = Integer.parseInt(scanner.nextLine());
+            switch(option){
+                case 1:
+                    System.out.println("Ingrese el autor");
+                    in = scanner.nextLine();
+                    catalogo = middleware.getAuthor(in);                 
+                    break;
+                case 2:
+                    System.out.println("Ingrese el Titulo");   
+                    in = scanner.nextLine();
+                    catalogo = middleware.getTitle(in);                  
+                    break;      
+                case 3:   
+                    catalogo = middleware.getLibros();                    
+                    break;     
+            }
+        }        
+    }  
     
     public static void ipServer(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese la ip de la biblioteca remota");
+        System.out.println("Ingrese la ip de la biblioteca");
         ip = scanner.next();      
         while(!ipValida(ip)){
-            System.out.println("Ingrese la ip de la biblioteca remota correctamente");
+            System.out.println("Ingrese una ip valida");
             ip = scanner.next();            
         }
   

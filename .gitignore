@@ -29,3 +29,10 @@ hs_err_pid*
 /Common/build/
 /Common/dist/
 /Cliente/build/
+/BibliotecaA/Cliente/build/
+/BibliotecaA/Cliente/nbproject/private/
+/BibliotecaA/Common/dist/
+/BibliotecaA/Common/nbproject/private/
+/BibliotecaA/Servidor/build/
+/BibliotecaA/Servidor/nbproject/private/
+/BibliotecaA/Common/build/
