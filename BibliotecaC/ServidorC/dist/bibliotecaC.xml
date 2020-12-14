@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<bibliotecaC>
+    <libro author="J. R. R. Tolkien">
+        <title>Señor de los anillos: La Comunidad del Anillo</title>
+    </libro>
+    <libro author="J. R. R. Tolkien">
+        <title>Señor de los anillos: Las dos torres</title>
+    </libro>
+    <libro author="J. R. R. Tolkien">
+        <title>Señor de los anillos: El retorno del Rey</title>
+    </libro>
+    <libro author="J. R. R. Tolkien">
+        <title>El hobbit</title>
+    </libro>
+    <libro author="Stephen King">
+        <title>IT</title>
+    </libro>
+    <libro author="Stephen King">
+        <title>El Resplandor</title>
+    </libro>
+</bibliotecaC>
+

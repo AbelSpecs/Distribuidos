@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<bibliotecaB>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y la piedra filosofal</title>
+    </libro>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y la cámara secreta</title>
+    </libro>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y el prisionero de Azkaban</title>
+    </libro>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y el cáliz de fuego</title>
+    </libro>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y la Orden del Fénix</title>
+    </libro>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y el misterio del príncipe</title>
+    </libro>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y las reliquias de la Muerte</title>
+    </libro>
+    <libro author="J. K. Rowling">
+        <title>Harry Potter y el legado maldito</title>
+    </libro>
+</bibliotecaB>
+

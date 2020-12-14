@@ -69,9 +69,7 @@ public class BibliotecaA extends javax.swing.JFrame {
                     catalogo = servidor.pedirLibro(in);                  
                     break;      
                 case 3:   
-                    catalogo = servidor.getLibros();
-                    System.out.println(catalogo.get(0).getAuthor());
-                    
+                    catalogo = servidor.getLibros();  
                     break;     
             }
             return catalogo;        
