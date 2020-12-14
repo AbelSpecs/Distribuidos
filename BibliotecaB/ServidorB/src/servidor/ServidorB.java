@@ -21,7 +21,7 @@ public class ServidorB implements IServidorB{
 
     @Override
     public List<Libro> buscarLibro(String titulo) throws RemoteException {
-        System.out.println("Buscando!");
+        System.out.println("Peticion de encontrar libros por autor: " + titulo);  
         ManejadorXML manejador = new ManejadorXML(path.getFile()); 
         this.catalog = manejador.buscarTitulo(titulo);
         return this.catalog;
@@ -29,7 +29,7 @@ public class ServidorB implements IServidorB{
 
     @Override
     public List<Libro> buscarAutor(String autor) throws RemoteException {
-        System.out.println("Buscando!");
+        System.out.println("Peticion de encontrar libros por autor: " + autor);  
         ManejadorXML manejador = new ManejadorXML(path.getFile()); 
         this.catalog = manejador.buscarAuthor(autor);
         return this.catalog;
@@ -37,7 +37,7 @@ public class ServidorB implements IServidorB{
 
     @Override
     public List<Libro> getLibros() throws RemoteException {
-        System.out.println("Buscando!");
+        System.out.println("Peticion de retornar libreria completa");  
         ManejadorXML manejador = new ManejadorXML(path.getFile()); 
         this.catalog = manejador.cargarXML();
         return this.catalog;

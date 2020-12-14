@@ -57,3 +57,9 @@ hs_err_pid*
 /BibliotecaC/CommonC/build/
 /BibliotecaC/CommonC/dist/
 /BibliotecaC/ClienteC/build/
+/BibliotecaA/ClienteA/dist/
+/BibliotecaB/ClienteB/dist/
+/BibliotecaC/ClienteC/dist/
+/BibliotecaA/ServidorA/dist/
+/BibliotecaB/ServidorB/dist/
+/BibliotecaC/ServidorC/dist/

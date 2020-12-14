@@ -18,16 +18,19 @@ public class MiddlewareB implements IMiddlewareZ39 {
 
     @Override
     public List<Libro> getTitle(String titulo) throws RemoteException {
+        System.out.print("Middleware --> "); 
         return server.buscarLibro(titulo);
     }
 
     @Override
     public List<Libro> getAuthor(String autor) throws RemoteException {
+        System.out.print("Middleware --> "); 
         return server.buscarAutor(autor);
     }
 
     @Override
     public List<Libro> getLibros() throws RemoteException {
+        System.out.print("Middleware --> "); 
         return server.getLibros();
     }
     

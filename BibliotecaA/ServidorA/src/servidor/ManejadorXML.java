@@ -188,7 +188,6 @@ public class ManejadorXML {
         } catch (FileNotFoundException | XMLStreamException e) {
             e.printStackTrace();
         }
-        System.out.println(catalogo.get(0).getAuthor());
         return catalogo;
     }
 }

@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static jdk.nashorn.tools.ShellFunctions.input;
 import common.IServidorB;
+import pantalla.BibliotecaB;
 
 
 public class ClienteB {
@@ -35,8 +36,8 @@ public class ClienteB {
     public static String pathZ39 = "Get";
 
     public static void main(String[] args) throws NotBoundException, MalformedURLException, RemoteException, Exception {
-        menu();
-        catalogo.forEach((libro) -> System.out.println(libro.getAuthor() + " | " + libro.getTitle()));
+        //menu();
+        //catalogo.forEach((libro) -> System.out.println(libro.getAuthor() + " | " + libro.getTitle()));
     }
     
     public static void menu() throws NotBoundException, MalformedURLException, RemoteException, IOException{
