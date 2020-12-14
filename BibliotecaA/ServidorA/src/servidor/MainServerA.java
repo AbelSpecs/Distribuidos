@@ -11,18 +11,23 @@ import common.Utils;
 import common.IServidorA;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainServerA {
     
     public static int port = 8000;
     public static String path = "Pedir";
+    public static String ip;
 
     public static void main(String[] args) throws RemoteException, Exception {
         Utils.setCodeBase(IServidorA.class);
         ServidorA server = new ServidorA();
         MiddlewareA translator = new MiddlewareA(server);        
        
-        
+        ipServer();
+        System.setProperty("java.rmi.server.hostname",ip);
         IServidorA remote = (IServidorA)UnicastRemoteObject.exportObject(server, 9000);
         Registry registry = LocateRegistry.createRegistry(port);
         registry.rebind(path, remote);
@@ -39,4 +44,32 @@ public class MainServerA {
         registryZ39.unbind(translator.getPath());
         UnicastRemoteObject.unexportObject(translator, true);
     }
+    
+        public static void ipServer(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese la ip del host");
+        ip = scanner.next();      
+        while(!ipValida(ip)){
+            System.out.println("Ingrese una ip valida");
+            ip = scanner.next();            
+        }
+    }
+      
+    public static boolean ipValida(String ip) 
+    { 
+        String zeroTo255 
+            = "(\\d{1,2}|(0|1)\\"
+              + "d{2}|2[0-4]\\d|25[0-5])"; 
+        String regex 
+            = zeroTo255 + "\\."
+              + zeroTo255 + "\\."
+              + zeroTo255 + "\\."
+              + zeroTo255; 
+        Pattern p = Pattern.compile(regex); 
+        if (ip == null) { 
+            return false; 
+        } 
+        Matcher m = p.matcher(ip); 
+        return m.matches(); 
+    } 
 }

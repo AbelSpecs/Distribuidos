@@ -35,7 +35,8 @@ public class ClienteB {
     public static String pathZ39 = "Get";
 
     public static void main(String[] args) throws NotBoundException, MalformedURLException, RemoteException, Exception {
-        menu();  
+        menu();
+        catalogo.forEach((libro) -> System.out.println(libro.getAuthor() + " | " + libro.getTitle()));
     }
     
     public static void menu() throws NotBoundException, MalformedURLException, RemoteException, IOException{

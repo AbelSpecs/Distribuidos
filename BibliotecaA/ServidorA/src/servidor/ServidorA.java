@@ -21,7 +21,6 @@ public class ServidorA implements IServidorA{
 
     @Override
     public List<Libro> pedirLibro(String titulo) throws RemoteException {
-        System.out.println(titulo);
         ManejadorXML manejador = new ManejadorXML(path.getFile()); 
         this.catalog = manejador.buscarTitulo(titulo);
         return this.catalog;
